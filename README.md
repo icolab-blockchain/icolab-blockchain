@@ -31,7 +31,8 @@ Faça todas as requisições para a porta 8080 do nginx.
 Os endpoints estão disponíveis estão documentados a seguir:
 
 ### Get /account
-Retorna: 
+Retorna:
+
 	{  
 		publicKey: "",  
 		privateKey: "",  
@@ -40,20 +41,26 @@ Retorna:
 
 ### Post /vote
 Parâmetros:
+
 	{  
 		account: "conta criadad no /account",  
 		candidate: "ID do candidato quem irá receber o voto"  
 	}
 Retorna:
+
 	{  
 		error: "em caso de parâmetros inválidos"  
-	}  
+	}
+
+...ou
+
 	{  
 		transactionHash: 'Hash da transação na Blockchain para consultas posteriores'  
 	}
 
 ### Get /vote/:candidate
 Retorna
+
 	{  
 		candidate: "ID do candidato que consultado",  
 		votes: "A quantidade de votos do candidato"  
@@ -61,12 +68,14 @@ Retorna
 
 ### Get /upvoting
 Retorna
+
 	{  
 		address: "Endereço do contrato de upvoting na Blockchain"  
 	}  
 
 ### Post /upvoting
 Parâmetros
+
 	{  
 		address: "Novo endereço do contrato de upvogin"  
 	}
