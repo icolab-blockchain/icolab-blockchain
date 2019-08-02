@@ -1,0 +1,48 @@
+version: '3.0'
+
+services:
+  geth:
+    container_name: icolab-geth
+    build: './geth'
+    command: "--syncmode 'full' --port 30311 --rpc --rpccorsdomain='*' --rpcaddr 'geth' --rpcport 8545 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --ws --wsaddr 'geth' --wsport 8546 --wsorigins '*' --wsapi 'eth,net,web3' --networkid 7751  --targetgaslimit '94000000' --etherbase 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --unlock 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --password /usr/share/eth_passwd --verbosity 6 --mine"
+    networks:
+      eth-network:
+        ipv4_address: 172.28.0.23
+    hostname: geth
+    tty: true
+
+  api:
+    container_name: icolab-api
+    build: './'
+    networks:
+      - eth-network
+    ports:
+      - "5000:5000"
+    tty: true
+    command: >
+      /bin/sh -c "
+        echo Waiting for mining node to start...;
+        while ! nc -z 172.28.0.23 8545;
+        do
+          sleep 1;
+        done;
+        echo Connected!;
+        npm start http://172.28.0.23:8545;
+      "
+
+  nginx:
+    container_name: icolab-nginx
+    image: nginx
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
+    networks:
+      - eth-network
+    ports:
+      - "4000:4000"
+      - "8080:4000"
+
+networks:
+  eth-network:
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

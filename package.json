@@ -1,0 +1,17 @@
+{
+  "name": "icolab-privatenet",
+  "version": "0.0.1",
+  "description": "iColab Private Network Functionalities",
+  "main": "app.js",
+  "scripts": {
+    "test": "truffle test",
+    "start": "node app.js"
+  },
+  "author": "Fausto Vanin",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.16.3",
+    "web3": "^1.0.0-beta.53"
+  }
+}
