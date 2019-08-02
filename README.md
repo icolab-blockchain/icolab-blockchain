@@ -32,42 +32,41 @@ Os endpoints estão disponíveis estão documentados a seguir:
 
 ### Get /account
 Retorna: 
-``{  
-	publicKey: "",  
-	privateKey: "",  
-	account: ""  
-}
-``
+	{  
+		publicKey: "",  
+		privateKey: "",  
+		account: ""  
+	}
 
 ### Post /vote
 Parâmetros:
-``{  
-	account: "conta criadad no /account",  
-	candidate: "ID do candidato quem irá receber o voto"  
-}``
+	{  
+		account: "conta criadad no /account",  
+		candidate: "ID do candidato quem irá receber o voto"  
+	}
 Retorna:
-``{  
-	error: "em caso de parâmetros inválidos"  
-}  
-{  
-	transactionHash: 'Hash da transação na Blockchain para consultas posteriores'  
-}``
+	{  
+		error: "em caso de parâmetros inválidos"  
+	}  
+	{  
+		transactionHash: 'Hash da transação na Blockchain para consultas posteriores'  
+	}
 
 ### Get /vote/:candidate
 Retorna
-``{  
-	candidate: "ID do candidato que consultado",  
-	votes: "A quantidade de votos do candidato"  
-}``  
+	{  
+		candidate: "ID do candidato que consultado",  
+		votes: "A quantidade de votos do candidato"  
+	}
 
 ### Get /upvoting
 Retorna
-``{  
-	address: "Endereço do contrato de upvoting na Blockchain"  
-}``  
+	{  
+		address: "Endereço do contrato de upvoting na Blockchain"  
+	}  
 
 ### Post /upvoting
 Parâmetros
-``{  
-	address: "Novo endereço do contrato de upvogin"  
-}
+	{  
+		address: "Novo endereço do contrato de upvogin"  
+	}
