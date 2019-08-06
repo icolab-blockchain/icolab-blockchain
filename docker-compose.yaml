@@ -4,7 +4,7 @@ services:
   geth:
     container_name: icolab-geth
     build: './geth'
-    command: "--syncmode 'full' --port 30311 --rpc --rpccorsdomain='*' --rpcaddr 'geth' --rpcport 8545 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --ws --wsaddr 'geth' --wsport 8546 --wsorigins '*' --wsapi 'eth,net,web3' --networkid 7751  --targetgaslimit '94000000' --etherbase 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --unlock 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --password /usr/share/eth_passwd --verbosity 6 --mine"
+    command: "--syncmode 'full' --port 30311 --rpc --rpccorsdomain='*' --rpcaddr 'geth' --rpcport 8545 --rpcapi 'personal,db,eth,net,web3,txpool,miner' --ws --wsaddr 'geth' --wsport 8546 --wsorigins '*' --wsapi 'eth,net,web3' --networkid 7751  --targetgaslimit '94000000' --etherbase 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --unlock 0x0F13030Ec0eCD87aBbeB2c485742d1eab3bFaA14 --password /usr/share/eth_passwd --verbosity 2 --allow-insecure-unlock --nousb --mine"
     networks:
       eth-network:
         ipv4_address: 172.28.0.23
