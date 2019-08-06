@@ -50,7 +50,7 @@ exports.init = async (provider, addr) => {
 			.on('receipt', function(receipt){
 				console.log('UpVoting deployed at ' + receipt.contractAddress);
 				contract.options.address = receipt.contractAddress;
-				console.log("API ready to rock (and for block)");
+				console.log("API ready to rock (and block)");
 			});
 		}
 		catch(e) {
@@ -134,4 +134,21 @@ exports.getVotes = async (req, res) => {
 		console.error(e);
 		res.status(422).send({error:'Requested candidate has not being voted yet'});
 	}
+}
+
+exports.getVoteHistory = async (req, res) => {
+	if(!req.params.page || !req.params.size) {
+		res.status(401).send({error: 'Missing input parameters'});
+	}
+
+	contract.getPastEvents('Voted', {fromBlock: 0, toBlock: 'latest'})
+		.then( events => {
+			const a = req.params.page*req.params.size;
+			const b = a+parseInt(req.params.size);
+			res.status(201).send(events.reverse().slice(a, b));
+		})
+		.catch( e => {
+			console.error(e);
+			res.status(503).send({error:'Error while processing request'});
+		})
 }

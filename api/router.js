@@ -17,4 +17,7 @@ module.exports = async function(app) {
 
 	app.route('/vote/:candidate')
 		.get(blockchain.getVotes);
+
+	app.route('/history/:page/:size')
+		.get(blockchain.getVoteHistory);
 }

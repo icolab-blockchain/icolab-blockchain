@@ -19,7 +19,7 @@ contract UpVoting {
 		emit Voted(msg.sender, name);
 	}
 	function voteFor(bytes32 name, address voter) public {
-		// require(msg.sender == owner, "Only contract owner could send delegate vote");
+		require(msg.sender == owner, "Only contract owner could send delegate vote");
 		if(address(candidates[name]) == address(0)) {
 			candidates[name] = new Candidate(name);
 		}
